@@ -940,7 +940,9 @@ function mountTo(root, tagName, opts) {
 
 }
 
-riot.tag = function(name, html, css, fn) {
+// nothing 为一种 workaround， 不知道为什么 riot 的不同版本之间，完全不兼容
+// 导致以前的代码完全无法复用，所以直接修改底层代码, 并自建 bower 依赖的 git 项目
+riot.tag = function(name, html, css, nothing, fn) {
   if (typeof css == 'function') fn = css
   else if (css) injectStyle(css)
   tag_impl[name] = { name: name, tmpl: html, fn: fn }
